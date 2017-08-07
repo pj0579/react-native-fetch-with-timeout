@@ -6,12 +6,12 @@ function _fetch(url, data, method) {
     })
 }
 
-export function ajax({url, data,query, method = 'GET'}) {
+export function ajax({url, data,query, method = 'GET',timeout}) {
     let promise = _fetch(url, data, method);
     let abort_promise=new Promise((resolve, reject) => {
         setTimeout(()=>{
          reject("timeout");
-        },10000)
+        },timeout)
     });
     return Promise.race([promise,abort_promise]).then(resp =>resp.json())
 }
