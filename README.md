@@ -6,13 +6,13 @@ ex:<br/>
         
         defalut return json
         
-        let promise=ajax({<br/>
-            url:xxx,<br/>
-            method: 'POST',<br/>
-            data: {<br/>
-                id:xxxx,<br/>
-                xxx:xxx<br/>
-            }<br/>
+        let promise=ajax({
+            url:xxx,
+            method: 'POST',
+            data: {
+                id:xxxx,
+                xxx:xxx
+            }
         });
        
        promise.then(()=>{
