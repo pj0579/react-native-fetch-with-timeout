@@ -6,12 +6,20 @@ function _fetch(url, data, method) {
     })
 }
 
-export function ajax({url, data,query, method = 'GET',timeout}) {
+export function ajax({url, data, query, method = 'GET', timeout}) {
     let promise = _fetch(url, data, method);
-    let abort_promise=new Promise((resolve, reject) => {
-        setTimeout(()=>{
-         reject("timeout");
-        },timeout)
+    let abort_promise = new Promise((resolve, reject) => {
+        setTimeout(()=> {
+            reject("timeout");
+        }, timeout)
     });
-    return Promise.race([promise,abort_promise]).then(resp =>resp.json())
+    return Promise.race([promise, abort_promise]).then(resp =>handleResp(resp))
+}
+
+function handleResp(resp) {
+    if (resp.code != "200") {
+        return Promise.reject("error");
+    } else {
+        return resp;
+    }
 }
