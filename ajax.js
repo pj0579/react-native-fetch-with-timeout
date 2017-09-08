@@ -14,7 +14,7 @@ export function ajax({url, data,query, method = 'GET',timeout=10000}) {
             reject("timeout");
         }, timeout)
     });
-    return Promise.race([promise, abort_promise]).then(resp =>handleResp(resp))
+    return Promise.race([promise, abort_promise]).then(resp =>handleResp(resp.json()))
 }
 
 function handleResp(resp) {
