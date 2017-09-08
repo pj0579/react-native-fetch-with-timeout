@@ -6,7 +6,8 @@ function _fetch(url, data, method) {
     })
 }
 
-export function ajax({url, data, query, method = 'GET', timeout}) {
+
+export function ajax({url, data,query, method = 'GET',timeout=10000}) {
     let promise = _fetch(url, data, method);
     let abort_promise = new Promise((resolve, reject) => {
         setTimeout(()=> {
